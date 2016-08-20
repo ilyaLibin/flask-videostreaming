@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>Video Streaming Demonstration</title>
+  </head>
+  <style>
+    img {
+      width: 800px;
+      height: 600px;
+    }
+  </style>
+  <body>
+    <h1>Video Streaming Demonstration</h1>
+    <input type="range" min="1" max="255" id="range1">
+    <input type="range" min="1" max="255" id="range2">
+    <img id="bg" src="{{ url_for('video_feed') }}">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      $('#range1, #range2').on('change', function(e) {
+          var obj = {}
+          obj['name'] = this.id;
+          obj['value'] = this.value
+          $.post('/params_change', obj);
+      })
+    </script>
+  </body>
+</html>
